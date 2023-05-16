@@ -82,7 +82,10 @@ struct MainView: View {
                                     let rect = CGRect(x: x, y: y, width: width, height: height)
                                     delegate.window?.setFrame(rect, display: true, animate: true)
                                 }) {
-                                    Image(nsImage: (apps[index]?.icon)!)
+                                    // Image(nsImage: (apps[index]?.icon)!)
+                                    if let data = apps[index]?.icon {
+                                        Image(nsImage: data)
+                                    }
                                     Text(apps[index]?.localizedName ?? "")
                                 }
                                 .buttonStyle(PlainButtonStyle())

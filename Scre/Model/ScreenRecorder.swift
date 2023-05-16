@@ -62,6 +62,8 @@ extension ScreenRecorder: AVCaptureFileOutputRecordingDelegate {
     func fileOutput(_ output: AVCaptureFileOutput, didFinishRecordingTo outputFileURL: URL, from connections: [AVCaptureConnection], error: Error?) {
         delegate?.screenRecorder(recorder: self, didStateChange: .stop)
         let duration = CMTimeGetSeconds(output.recordedDuration)
+        // let state: MainView.ViewState = .finish
+        // self.delegate?.screenRecorder(recorder: self, didStateChange: state)
         gifConveter.save(videoUrl: outputFileURL, duration: Float(duration)) { [weak self] url in
             guard let self = self else {
                 return
